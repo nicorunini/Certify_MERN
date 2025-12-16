@@ -1,6 +1,0 @@
-<% layout('base') %>
-
-<h2>Booking Receipt</h2>
-<p>Thank you for booking with us.</p>
-
-<script src="/js/receipt.js"></script>
