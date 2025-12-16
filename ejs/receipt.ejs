@@ -1,0 +1,10 @@
+<% layout('base') %>
+
+<h2>Booking Receipt</h2>
+
+<p>Receipt ID: <%= booking.receipt_id %></p>
+<p>Artist: <%= booking.artist_name %></p>
+<p>Venue: <%= booking.venue.name %></p>
+<p>Amount Paid: ₱<%= booking.transaction.amount_paid.toLocaleString() %></p>
+
+<button onclick="window.print()">Print</button>

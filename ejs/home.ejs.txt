@@ -1,0 +1,86 @@
+<% layout('base') %>
+
+<div class="picture">
+    <div class="text-box">
+        <h1>CERTIFY</h1>
+        <p>Where Every Show Begins</p>
+        <a href="/dashboard" class="hero-btn">BOOK NOW</a>
+    </div>
+</div>
+
+<div class="container-fluid mt-5">
+    <h2 class="text-center mb-4">VENUES</h2>
+
+    <div class="row justify-content-center">
+        <% venues.forEach(venue => { %>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-lg border-0">
+                    <img src="/images/<%= venue.name.replace(/ /g, '_') %>.jpg"
+                         class="card-img-top"
+                         alt="<%= venue.name %>">
+
+                    <div class="card-body text-center">
+                        <h5 class="card-title"><%= venue.name %></h5>
+                        <p class="card-text"><%= venue.location %></p>
+
+                        <p class="card-text">
+                            Capacity: <%= venue.capacity %>
+                        </p>
+
+                        <p class="card-text fw-bold">
+                            Morning: ₱<%= venue.morning_price.toLocaleString() %><br>
+                            Afternoon: ₱<%= venue.afternoon_price.toLocaleString() %><br>
+                            Evening: ₱<%= venue.evening_price.toLocaleString() %>
+                        </p>
+
+                        <a href="/dashboard" class="btn btn-primary">
+                            Book Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">UPCOMING EVENTS</h2>
+
+    <div class="mb-3 text-end">
+        <label for="filter" class="fw-bold">Filter:</label>
+        <select id="filter" class="form-select w-auto d-inline-block">
+            <option value="future">Upcoming</option>
+            <option value="past">Past</option>
+            <option value="all">All</option>
+        </select>
+    </div>
+
+    <div class="table-responsive shadow-lg rounded">
+        <table class="table align-middle text-center">
+            <thead class="bg-primary text-white">
+                <tr>
+                    <th>Venue</th>
+                    <th>Concert Title</th>
+                    <th>Artist</th>
+                    <th>Agency</th>
+                    <th>Date</th>
+                    <th>Time Slot</th>
+                </tr>
+            </thead>
+            <tbody id="eventsTable">
+                <% events.forEach(event => { %>
+                    <tr data-date="<%= event.date %>">
+                        <td><%= event.venue.name %></td>
+                        <td><%= event.concert_title %></td>
+                        <td><%= event.artist_name %></td>
+                        <td><%= event.user.agency_name %></td>
+                        <td><%= event.date %></td>
+                        <td><%= event.time_slot %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="/js/home.js"></script>
