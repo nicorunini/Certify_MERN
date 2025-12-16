@@ -83,4 +83,34 @@
     </div>
 </div>
 
-<script src="/js/home.js"></script>
+<!-- Inline JS for filtering events -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const filterSelect = document.getElementById("filter");
+    const rows = document.querySelectorAll("#eventsTable tr");
+
+    if (!filterSelect || rows.length === 0) return;
+
+    function applyFilter() {
+        const filter = filterSelect.value;
+        const today = new Date().toISOString().split("T")[0];
+
+        rows.forEach(row => {
+            const eventDate = row.getAttribute("data-date");
+
+            if (filter === "future") {
+                row.style.display = eventDate >= today ? "" : "none";
+            } else if (filter === "past") {
+                row.style.display = eventDate < today ? "" : "none";
+            } else {
+                row.style.display = "";
+            }
+        });
+    }
+
+    filterSelect.addEventListener("change", applyFilter);
+
+    // Default behavior: show upcoming events
+    applyFilter();
+});
+</script>
