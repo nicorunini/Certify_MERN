@@ -1,0 +1,6 @@
+<% layout('base') %>
+
+<h2>Profile</h2>
+<p>Your account information.</p>
+
+<script src="/js/profile.js"></script>
